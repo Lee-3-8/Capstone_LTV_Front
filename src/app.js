@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb} from 'antd';
 import { DesktopOutlined, StarOutlined, StarFilled, StarTwoTone, FileOutlined} from '@ant-design/icons';
-import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
-import './App.css';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider, Footer } = Layout;

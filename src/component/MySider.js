@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { Layout, Menu, Breadcrumb} from 'antd';
 import { DesktopOutlined, StarOutlined, StarFilled, StarTwoTone, FileOutlined} from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 const {Sider} = Layout;
 const { SubMenu } = Menu;
   
@@ -17,17 +18,17 @@ const { SubMenu } = Menu;
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
         <Menu.Item key="1">
           <StarOutlined />
-          <span>Main</span>
+          <Link to="/main">Main</Link>
         </Menu.Item>
         <SubMenu
           key="sub1"
           title={<span><StarFilled /><span>Analysis</span></span>}
         >
-          <Menu.Item key="2">OS</Menu.Item>
-          <Menu.Item key="3">Device</Menu.Item>
-          <Menu.Item key="4">WeekDay</Menu.Item>
-          <Menu.Item key="5">Geo</Menu.Item>
-          <Menu.Item key="6">FirstPlay</Menu.Item>
+          <Menu.Item key="2"><Link to="/os">OS</Link></Menu.Item>
+          <Menu.Item key="3"><Link to="/device">Device</Link></Menu.Item>
+          <Menu.Item key="4"><Link to="/weekday">WeekDay</Link></Menu.Item>
+          <Menu.Item key="5"><Link to="/geo">Geo</Link></Menu.Item>
+          <Menu.Item key="6"><Link to="/firstPlay">FirstPlay</Link></Menu.Item>
 
         </SubMenu>
         <SubMenu

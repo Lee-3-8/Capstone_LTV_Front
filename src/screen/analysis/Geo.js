@@ -1,5 +1,5 @@
 import React from 'react';
-import ScreenBase from '../component/ScreenBase';
+import ScreenBase from '../../component/ScreenBase';
 
 const Geo = () => {
   return (

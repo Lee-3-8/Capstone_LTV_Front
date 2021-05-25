@@ -1,10 +1,10 @@
 import React from 'react';
-import ScreenBase from '../component/ScreenBase';
+import ScreenBase from '../../component/ScreenBase';
 
-const WeekDay = () => {
+const Weekday = () => {
   return (
-    <ScreenBase title = "Analysis" sub = "WeekDay"/>
+    <ScreenBase title = "Analysis" sub = "Weekday"/>
   )
 }
 
-export default WeekDay;
+export default Weekday;

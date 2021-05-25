@@ -12,7 +12,7 @@ class App extends Component {
       <Layout style={{ minHeight: '100vh' }}>
         <MySider/>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }} />
+          <Header style={{ background: '#fff', padding: 0,height: '56px'}} />
           <Route path={["/","/main"]} exact={true} component = {Main}/>
           <Route path="/device" component = {Device}/>
           <Route path="/firstPlay" component = {FirstPlay}/>

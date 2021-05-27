@@ -1,14 +1,20 @@
-import React,{useState} from 'react';
-import { Layout, Menu, Breadcrumb} from 'antd';
-import { DesktopOutlined, StarOutlined, StarFilled, StarTwoTone, FileOutlined} from '@ant-design/icons';
+import React, { useState } from 'react';
+import { Layout, Menu } from 'antd';
+import {
+  StarOutlined,
+  StarFilled,
+  StarTwoTone,
+  FileOutlined,
+} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-const {Sider} = Layout;
+
+const { Sider } = Layout;
 const { SubMenu } = Menu;
-  
-  const MySider = ()=>{
-    const [collapsed, onCollapse] = useState(false);
-    return (
-      <Sider
+
+const MySider = () => {
+  const [collapsed, onCollapse] = useState(false);
+  return (
+    <Sider
       collapsible
       collapsed={collapsed}
       onCollapse={onCollapse}
@@ -22,18 +28,37 @@ const { SubMenu } = Menu;
         </Menu.Item>
         <SubMenu
           key="sub1"
-          title={<span><StarFilled /><span>Analysis</span></span>}
+          title={
+            <span>
+              <StarFilled />
+              <span>Analysis</span>
+            </span>
+          }
         >
-          <Menu.Item key="2"><Link to="/os">OS</Link></Menu.Item>
-          <Menu.Item key="3"><Link to="/device">Device</Link></Menu.Item>
-          <Menu.Item key="4"><Link to="/weekday">WeekDay</Link></Menu.Item>
-          <Menu.Item key="5"><Link to="/geo">Geo</Link></Menu.Item>
-          <Menu.Item key="6"><Link to="/firstPlay">FirstPlay</Link></Menu.Item>
-
+          <Menu.Item key="2">
+            <Link to="/os">OS</Link>
+          </Menu.Item>
+          <Menu.Item key="3">
+            <Link to="/device">Device</Link>
+          </Menu.Item>
+          <Menu.Item key="4">
+            <Link to="/weekday">WeekDay</Link>
+          </Menu.Item>
+          <Menu.Item key="5">
+            <Link to="/geo">Geo</Link>
+          </Menu.Item>
+          <Menu.Item key="6">
+            <Link to="/firstPlay">FirstPlay</Link>
+          </Menu.Item>
         </SubMenu>
         <SubMenu
           key="sub2"
-          title={<span><StarTwoTone /><span>Others</span></span>}
+          title={
+            <span>
+              <StarTwoTone />
+              <span>Others</span>
+            </span>
+          }
         >
           <Menu.Item key="7">Settings</Menu.Item>
           <Menu.Item key="8">Dev-Info</Menu.Item>
@@ -44,6 +69,6 @@ const { SubMenu } = Menu;
         </Menu.Item>
       </Menu>
     </Sider>
-    )
-  }
-  export default MySider;
+  );
+};
+export default MySider;

@@ -2,23 +2,41 @@ import { Slider, InputNumber, Row, Col } from 'antd';
 import React, { useState } from 'react';
 
 const IntegerStep = () => {
-  const [inputValue, onChange] = useState(1);
+  const [inputValue, onChange] = useState(25);
   const marks = {
-    0: '',
-    10: '10%',
-    25: '25%',
-    80: '80%',
-    100: '',
+    0: {
+      style: {
+        color: '#f50',
+      },
+      label: <strong>0%</strong>,
+    },
+    10: {
+      style: {
+        color: '#f50',
+      },
+      label: <strong>10%</strong>,
+    },
+    25: {
+      style: {
+        color: '#f50',
+      },
+      label: <strong>25%</strong>,
+    },
+    75: {
+      style: {
+        color: '#f50',
+      },
+      label: <strong>75%</strong>,
+    },
   };
   return (
-    <div style={{ marginBottom: '4%' }}>
+    <div style={{ marginBottom: '4%', marginTop: '4%' }}>
       <Row gutter={24} justify="center">
         <Col span={18}>
           <Slider
             min={0}
             max={100}
             marks={marks}
-            defaultValue={25}
             onChange={onChange}
             value={typeof inputValue === 'number' ? inputValue : 0}
           />

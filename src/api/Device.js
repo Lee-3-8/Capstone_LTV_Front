@@ -1,0 +1,27 @@
+const deviceData = {
+  bar: [
+    { device: 'device1', count: 3 },
+    { device: 'device2', count: 4 },
+    { device: 'device3', count: 3.5 },
+    { device: 'device4', count: 5 },
+    { device: 'device5', count: 4.9 },
+    { device: 'device6', count: 6 },
+    { device: 'device7', count: 7 },
+    { device: 'device8', count: 9 },
+    { device: 'device9', count: 13 },
+    { device: 'device11', count: 3 },
+    { device: 'device12', count: 4 },
+    { device: 'device13', count: 3.5 },
+    { device: 'device14', count: 5 },
+    { device: 'device15', count: 4.9 },
+    { device: 'device16', count: 6 },
+    { device: 'device17', count: 7 },
+    { device: 'device18', count: 9 },
+    { device: 'device19', count: 13 },
+    { device: 'device21', count: 3 },
+    { device: 'device22', count: 4 },
+    { device: 'device23', count: 3.5 },
+    { device: 'device24', count: 5 },
+  ],
+};
+export default deviceData;

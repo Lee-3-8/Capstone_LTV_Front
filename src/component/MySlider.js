@@ -1,8 +1,8 @@
-import { Slider, InputNumber, Row, Col } from 'antd';
+import { Slider, InputNumber, Row, Col, Button } from 'antd';
 import React, { useState } from 'react';
 
-const IntegerStep = () => {
-  const [inputValue, onChange] = useState(25);
+const IntegerStep = ({ getData }) => {
+  const [inputValue, onChange] = useState(100);
   const marks = {
     0: {
       style: {
@@ -32,6 +32,9 @@ const IntegerStep = () => {
   return (
     <div style={{ marginBottom: '4%', marginTop: '4%' }}>
       <Row gutter={24} justify="center">
+        {/* <Col>
+          <div style={{fontSize:"24px"}}>RANK</div>
+        </Col> */}
         <Col span={18}>
           <Slider
             min={0}
@@ -41,13 +44,18 @@ const IntegerStep = () => {
             value={typeof inputValue === 'number' ? inputValue : 0}
           />
         </Col>
-        <Col span={3}>
+        <Col>
           <InputNumber
             min={0}
             max={100}
             value={inputValue}
             onChange={onChange}
           />
+        </Col>
+        <Col>
+          <Button type="primary" onClick={() => getData(inputValue)}>
+            View
+          </Button>
         </Col>
       </Row>
     </div>

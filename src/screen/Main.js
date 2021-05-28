@@ -1,27 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Divider } from 'antd';
-import { Line, Pie } from '@ant-design/charts';
+import { Column, Pie } from '@ant-design/charts';
+import axios from 'axios';
 import ScreenBase from '../component/ScreenBase';
 import IntegerStep from '../component/MySlider';
 import mainData from '../api/main';
 import Mystatistic from '../component/Mystatistic';
-import MyCalenar from '../component/MyCalender';
+import MyDate from '../component/MyDate';
 
 const Main = () => {
+  const [start, setStart] = useState('2021-03-01');
+  const [end, setEnd] = useState('2021-05-18');
+  const [data, getData] = useState({
+    data: [],
+    loading: true,
+  });
+
+  const fetchMain = async per => {
+    // const data = await axios.get('ltv/api/prediction', {
+    //   params: { from: start, to: end, percentile: per },
+    // });
+    const temp = mainData.line;
+    alert(`main ${start} ${end} ${per}`);
+    getData({
+      data: temp,
+      loading: false,
+    });
+  };
+  useEffect(() => {
+    fetchMain(100);
+    return () => {};
+  }, []);
   const Gridmain = () => {
-    const lineConfig = {
-      data: mainData.line,
+    const ColumnConfig = v => ({
+      data: v,
       height: 400,
       xField: 'week',
       yField: 'value',
-      point: {
-        size: 5,
-        shape: 'diamond',
+      xAxis: { label: { autoRotate: false } },
+      slider: {
+        start: 0,
+        end: 100,
       },
-    };
-    const pieConfig = (data, title) => ({
+    });
+    const pieConfig = (v, title) => ({
       appendPadding: 10,
-      data,
+      data: v,
       angleField: 'value',
       colorField: 'type',
       radius: 1,
@@ -69,27 +93,33 @@ const Main = () => {
         <Divider orientation="left">Overview</Divider>
         <div>
           <div style={{ margin: '4% 10% 4% 10%' }}>
-            <Row justify="space-around" gutter={24}>
-              <Col span={6}>
+            <Row justify="space-around" align="middle" gutter={24}>
+              <Col>
                 <Mystatistic
                   title="Predicted income"
-                  value={99912399}
+                  value={12355}
                   suffix="$"
                 />
               </Col>
-              <Col span={6}>
+              <Col>
                 <Mystatistic title="Number of Users" value={453} />
               </Col>
-              <Col span={6}>
+              <Col>
                 <Mystatistic title="User AVG income" value={45123} suffix="$" />
               </Col>
-              <Col span={6}>
-                <MyCalenar />
+              <Col>
+                <MyDate
+                  start={start}
+                  setStart={setStart}
+                  end={end}
+                  setEnd={setEnd}
+                />
               </Col>
             </Row>
           </div>
-          <Line {...lineConfig} />
-          <IntegerStep />
+          <Divider orientation="left">Top</Divider>
+          <IntegerStep getData={fetchMain} />
+          <Column {...ColumnConfig(data.data)} />
           <Divider style={{ margin: '4% 0 4% 0' }} orientation="left">
             Options
           </Divider>

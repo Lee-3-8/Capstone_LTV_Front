@@ -1,10 +1,11 @@
 import React from 'react';
-import { Statistic, Row, Col, Divider } from 'antd';
+import { Row, Col, Divider } from 'antd';
 import { Line, Pie } from '@ant-design/charts';
 import ScreenBase from '../component/ScreenBase';
 import IntegerStep from '../component/MySlider';
 import mainData from '../api/main';
 import Mystatistic from '../component/Mystatistic';
+import MyCalenar from '../component/MyCalender';
 
 const Main = () => {
   const Gridmain = () => {
@@ -81,6 +82,9 @@ const Main = () => {
               </Col>
               <Col span={6}>
                 <Mystatistic title="User AVG income" value={45123} suffix="$" />
+              </Col>
+              <Col span={6}>
+                <MyCalenar />
               </Col>
             </Row>
           </div>

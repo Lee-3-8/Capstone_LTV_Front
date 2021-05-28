@@ -3,61 +3,13 @@ import { Statistic, Row, Col, Divider } from 'antd';
 import { Line, Pie } from '@ant-design/charts';
 import ScreenBase from '../component/ScreenBase';
 import IntegerStep from '../component/MySlider';
-
-const mockUpData = {
-  line: [
-    { week: 'week1', value: 3 },
-    { week: 'week2', value: 4 },
-    { week: 'week3', value: 3.5 },
-    { week: 'week4', value: 5 },
-    { week: 'week5', value: 4.9 },
-    { week: 'week6', value: 6 },
-    { week: 'week7', value: 7 },
-    { week: 'week8', value: 9 },
-    { week: 'week9', value: 13 },
-  ],
-  pie1: [
-    {
-      type: 'Day0',
-      value: 27,
-    },
-    {
-      type: 'Day1',
-      value: 25,
-    },
-    {
-      type: 'Day2',
-      value: 18,
-    },
-    {
-      type: 'Day3~6',
-      value: 15,
-    },
-    {
-      type: 'Day7',
-      value: 15,
-    },
-  ],
-  pie2: [
-    {
-      type: 'is',
-      value: 27,
-    },
-    {
-      type: 'ba',
-      value: 35,
-    },
-    {
-      type: 'rv',
-      value: 38,
-    },
-  ],
-};
+import mainData from '../api/main';
+import Mystatistic from '../component/Mystatistic';
 
 const Main = () => {
   const Gridmain = () => {
     const lineConfig = {
-      data: mockUpData.line,
+      data: mainData.line,
       height: 400,
       xField: 'week',
       yField: 'value',
@@ -117,35 +69,33 @@ const Main = () => {
         <div>
           <div style={{ margin: '4% 10% 4% 10%' }}>
             <Row justify="space-around" gutter={24}>
-              <Col span={4}>
-                <Statistic title="Predicted income" value={`${152.94}$`} />
+              <Col span={6}>
+                <Mystatistic
+                  title="Predicted income"
+                  value={99912399}
+                  suffix="$"
+                />
               </Col>
-              <Col span={4}>
-                <Statistic title="Number of Users" value={453} />
+              <Col span={6}>
+                <Mystatistic title="Number of Users" value={453} />
               </Col>
-              <Col span={4}>
-                <Statistic title="User AVG income" value={45123} />
-              </Col>
-              <Col span={4}>
-                <Statistic title="From" value="2021-02-19" />
-              </Col>
-              <Col span={4}>
-                <Statistic title="To" value="2021-04-31" />
+              <Col span={6}>
+                <Mystatistic title="User AVG income" value={45123} suffix="$" />
               </Col>
             </Row>
           </div>
-          <IntegerStep />
           <Line {...lineConfig} />
+          <IntegerStep />
           <Divider style={{ margin: '4% 0 4% 0' }} orientation="left">
             Options
           </Divider>
           <div>
             <Row gutter={24}>
               <Col span={12}>
-                <Pie {...pieConfig(mockUpData.pie1, 'DAY')} />
+                <Pie {...pieConfig(mainData.pie1, 'DAY')} />
               </Col>
               <Col span={12}>
-                <Pie {...pieConfig(mockUpData.pie2, 'AD')} />
+                <Pie {...pieConfig(mainData.pie2, 'AD')} />
               </Col>
             </Row>
           </div>

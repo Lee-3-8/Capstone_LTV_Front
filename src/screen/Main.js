@@ -11,19 +11,34 @@ import MyDate from '../component/MyDate';
 const Main = () => {
   const [start, setStart] = useState('2021-03-01');
   const [end, setEnd] = useState('2021-05-18');
+  const [total, setTotal] = useState(0);
+  const [user, setUser] = useState(0);
+  const [avg, setAvg] = useState(0);
   const [data, getData] = useState({
     data: [],
     loading: true,
   });
 
+  const convertData = data => {
+    const result = Object.keys(data).map(key => ({
+      week: key,
+      value: data[key].toFixed(2) * 1,
+    }));
+    console.log(result);
+    return result;
+  };
+
   const fetchMain = async per => {
-    // const data = await axios.get('ltv/api/prediction', {
-    //   params: { from: start, to: end, percentile: per },
-    // });
-    const temp = mainData.line;
-    alert(`main ${start} ${end} ${per}`);
+    const res = await axios.get('ltv/api/prediction', {
+      params: { from: start, to: end, percentile: per / 100 },
+    });
+    // const res = mainData.line;
+    // alert(`fetch main ${start} ${end} ${per}`);
+    setTotal(res.total.toFixed(2));
+    setUser(res.user.toFixed(2));
+    setAvg(res.avg.toFixed(2));
     getData({
-      data: temp,
+      data: convertData(res.data),
       loading: false,
     });
   };
@@ -97,15 +112,15 @@ const Main = () => {
               <Col>
                 <Mystatistic
                   title="Predicted income"
-                  value={12355}
+                  value={total}
                   suffix="$"
                 />
               </Col>
               <Col>
-                <Mystatistic title="Number of Users" value={453} />
+                <Mystatistic title="Number of Users" value={user} />
               </Col>
               <Col>
-                <Mystatistic title="User AVG income" value={45123} suffix="$" />
+                <Mystatistic title="User AVG income" value={avg} suffix="$" />
               </Col>
               <Col>
                 <MyDate

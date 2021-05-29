@@ -30,7 +30,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|PNG)$/,
+        test: /\.(jpg|png)$/,
         use: {
           loader: 'url-loader', // url 로더를 설정한다
           options: {

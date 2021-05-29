@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 const env = process.env.NODE_ENV;
 const removeNewLine = buffer => buffer.toString().replace('\n', '');
 
@@ -80,8 +80,42 @@ module.exports = {
       : []),
   ],
   devServer: {
-    host: 'localhost',
+    before: (app, server, compiler) => {
+      app.get('/ltv/api/prediction', (req, res) => {
+        res.json({
+          data: {
+            week1: 128.79898205399513,
+            week2: 133.08281889557838,
+            week3: 141.10717052221298,
+            week4: 149.12005174160004,
+            week5: 1823.1234,
+          },
+          total: 1078.9560574889183,
+          user: 5280,
+          avg: 0.20434773816077997,
+        });
+      });
+      app.get('/ltv/api/device-os/analysis', (req, res) => {
+        res.json([
+          {
+            count: 1731,
+            percentile: 51.15,
+            device_os: 'Android 10',
+          },
+          {
+            count: 295,
+            percentile: 8.72,
+            device_os: 'Android 11',
+          },
+        ]);
+      });
+    },
+    contentBase: path.join(__dirname, 'dist'),
+    publicPath: '/',
+    // host: "dev.domain.com",
+    overlay: true,
     port,
-    open: true,
+    stats: 'errors-only',
+    historyApiFallback: true,
   },
 };

@@ -29,16 +29,19 @@ const Main = () => {
   };
 
   const fetchMain = async per => {
-    const res = await axios.get('ltv/api/prediction', {
-      params: { from: start, to: end, percentile: per / 100 },
-    });
-    // const res = mainData.line;
-    // alert(`fetch main ${start} ${end} ${per}`);
-    setTotal(res.total.toFixed(2));
-    setUser(res.user.toFixed(2));
-    setAvg(res.avg.toFixed(2));
+    let res = [];
+    try {
+      res = await axios.get('/ltv/api/prediction', {
+        params: { from: start, to: end, percentile: per / 100 },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    setTotal(res.data.total.toFixed(3));
+    setUser(res.data.user);
+    setAvg(res.data.avg.toFixed(3));
     getData({
-      data: convertData(res.data),
+      data: convertData(res.data.data),
       loading: false,
     });
   };
@@ -117,7 +120,11 @@ const Main = () => {
                 />
               </Col>
               <Col>
-                <Mystatistic title="Number of Users" value={user} />
+                <Mystatistic
+                  title="Number of Users"
+                  value={user}
+                  decimals={0}
+                />
               </Col>
               <Col>
                 <Mystatistic title="User AVG income" value={avg} suffix="$" />

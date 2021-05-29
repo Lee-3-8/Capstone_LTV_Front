@@ -2,6 +2,7 @@ import { Slider, InputNumber, Row, Col, Button } from 'antd';
 import React, { useState } from 'react';
 
 const IntegerStep = ({ getData }) => {
+  console.log(getData);
   const [inputValue, onChange] = useState(100);
   const marks = {
     0: {

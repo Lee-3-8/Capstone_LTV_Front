@@ -11,8 +11,6 @@ const ScreenBase = ({ title, sub = false, contents = () => '' }) => (
     </Breadcrumb>
     <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
       {contents}
-      This page is {title}
-      {sub && `-${sub}`}
     </div>
   </Content>
 );

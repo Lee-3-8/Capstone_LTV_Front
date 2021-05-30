@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Statistic, Row, Col, Divider } from 'antd';
+import { Divider } from 'antd';
 import { Pie } from '@ant-design/charts';
 import axios from 'axios';
 import ScreenBase from '../../component/ScreenBase';
@@ -30,6 +30,7 @@ const Weekday = () => {
     fetchWeekday(100);
     return () => {};
   }, []);
+
   const Gridmain = () => {
     const pieConfig = (data, title) => ({
       appendPadding: 10,
@@ -67,11 +68,12 @@ const Weekday = () => {
             textOverflow: 'ellipsis',
           },
           formatter: function formatter(v) {
+            console.log(data,v)
             if (v === undefined) {
               return title;
             }
 
-            return `${v.weekday}\n${`${v.count}`}`;
+            return `${v.weekday}\n${`${v.percentile}%`}`;
           },
         },
       },

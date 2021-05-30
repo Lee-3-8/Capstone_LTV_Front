@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Divider } from 'antd';
-import { Line } from '@ant-design/charts';
+import { Bar } from '@ant-design/charts';
 import axios from 'axios';
 import ScreenBase from '../../component/ScreenBase';
 import IntegerStep from '../../component/MySlider';
@@ -31,22 +31,20 @@ const Geo = () => {
     return () => {};
   }, []);
   const Gridmain = () => {
-    const lineConfig = {
+    const BarConfig = {
       data: data.data,
-      height: 400,
-      xField: 'region',
-      yField: 'count',
-      point: {
-        size: 5,
-        shape: 'diamond',
-      },
+      xField: 'count',
+      yField: 'region',
+      // conversionTag: {},
+      seriesField: 'count',
+      legend: { position: 'bottom-left' },
     };
     return (
       <div>
-        <Divider orientation="left">Overview</Divider>
+        <Divider orientation="left">Top</Divider>
         <div>
-          <IntegerStep getData={fetchGeo}/>
-          <Line {...lineConfig} />
+          <IntegerStep getData={fetchGeo} />
+          <Bar {...BarConfig} />
         </div>
       </div>
     );

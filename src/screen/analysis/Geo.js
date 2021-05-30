@@ -1,17 +1,41 @@
-import React from 'react';
-import { Statistic, Row, Col, Divider } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Divider } from 'antd';
 import { Line } from '@ant-design/charts';
+import axios from 'axios';
 import ScreenBase from '../../component/ScreenBase';
 import IntegerStep from '../../component/MySlider';
-import GeoData from '../../api/Geo';
 
 const Geo = () => {
+  const [data, getData] = useState({
+    data: [],
+    loading: true,
+  });
+  const fetchGeo = async per => {
+    let res = [];
+    try {
+      res = await axios.get('/ltv/api/region/analysis', {
+        params: { percentile: per / 100 },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(res.data);
+    getData({
+      data: res.data,
+      loading: false,
+    });
+  };
+
+  useEffect(() => {
+    fetchGeo(100);
+    return () => {};
+  }, []);
   const Gridmain = () => {
     const lineConfig = {
-      data: GeoData.line,
+      data: data.data,
       height: 400,
-      xField: 'week',
-      yField: 'value',
+      xField: 'region',
+      yField: 'count',
       point: {
         size: 5,
         shape: 'diamond',
@@ -21,27 +45,8 @@ const Geo = () => {
       <div>
         <Divider orientation="left">Overview</Divider>
         <div>
-          <div style={{ margin: '4% 10% 4% 10%' }}>
-            <Row justify="space-around" gutter={24}>
-              <Col span={4}>
-                <Statistic title="Predicted income" value={`${152.94}$`} />
-              </Col>
-              <Col span={4}>
-                <Statistic title="Number of Users" value={453} />
-              </Col>
-              <Col span={4}>
-                <Statistic title="User AVG income" value={45123} />
-              </Col>
-              <Col span={4}>
-                <Statistic title="From" value="2021-02-19" />
-              </Col>
-              <Col span={4}>
-                <Statistic title="To" value="2021-04-31" />
-              </Col>
-            </Row>
-          </div>
+          <IntegerStep getData={fetchGeo}/>
           <Line {...lineConfig} />
-          <IntegerStep />
         </div>
       </div>
     );

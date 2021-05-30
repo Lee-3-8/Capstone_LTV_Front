@@ -1,17 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Statistic, Row, Col, Divider } from 'antd';
 import { Pie } from '@ant-design/charts';
+import axios from 'axios';
 import ScreenBase from '../../component/ScreenBase';
 import IntegerStep from '../../component/MySlider';
-import WeekdayData from '../../api/Weekday';
 
 const Weekday = () => {
+  const [data, getData] = useState({
+    data: [],
+    loading: true,
+  });
+  const fetchWeekday = async per => {
+    let res = [];
+    try {
+      res = await axios.get('/ltv/api/weekday/analysis', {
+        params: { percentile: per / 100 },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(res.data);
+    getData({
+      data: res.data,
+      loading: false,
+    });
+  };
+
+  useEffect(() => {
+    fetchWeekday(100);
+    return () => {};
+  }, []);
   const Gridmain = () => {
     const pieConfig = (data, title) => ({
       appendPadding: 10,
       data,
-      angleField: 'value',
-      colorField: 'type',
+      angleField: 'count',
+      colorField: 'weekday',
       radius: 1,
       innerRadius: 0.64,
       meta: {
@@ -47,36 +71,17 @@ const Weekday = () => {
               return title;
             }
 
-            return `${v.type}\n${`${v.value}%`}`;
+            return `${v.weekday}\n${`${v.count}`}`;
           },
         },
       },
     });
     return (
       <div>
-        <Divider orientation="left">Overview</Divider>
+        <Divider orientation="left">Top</Divider>
         <div>
-          <div style={{ margin: '4% 10% 4% 10%' }}>
-            <Row justify="space-around" gutter={24}>
-              <Col span={4}>
-                <Statistic title="Predicted income" value={`${152.94}$`} />
-              </Col>
-              <Col span={4}>
-                <Statistic title="Number of Users" value={453} />
-              </Col>
-              <Col span={4}>
-                <Statistic title="User AVG income" value={45123} />
-              </Col>
-              <Col span={4}>
-                <Statistic title="From" value="2021-02-19" />
-              </Col>
-              <Col span={4}>
-                <Statistic title="To" value="2021-04-31" />
-              </Col>
-            </Row>
-          </div>
-          <Pie {...pieConfig(WeekdayData.pie, 'Week')} />
           <IntegerStep />
+          <Pie {...pieConfig(data.data, 'Week')} />
         </div>
       </div>
     );

@@ -1,44 +1,50 @@
-import React from 'react';
-import { Statistic, Row, Col, Divider } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Divider } from 'antd';
 import { Bar } from '@ant-design/charts';
+import axios from 'axios';
 import ScreenBase from '../../component/ScreenBase';
 import IntegerStep from '../../component/MySlider';
-import deviceData from '../../api/Device';
 
 const Device = () => {
+  const [data, getData] = useState({
+    data: [],
+    loading: true,
+  });
+  const fetchDevice = async per => {
+    let res = [];
+    try {
+      res = await axios.get('/ltv/api/device-name/analysis', {
+        params: { percentile: per / 100 },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    // console.log(res.data);
+    getData({
+      data: res.data,
+      loading: false,
+    });
+  };
+
+  useEffect(() => {
+    fetchDevice(100);
+    return () => {};
+  }, []);
+
   const Gridmain = () => {
     const BarConfig = {
-      data: deviceData.bar,
+      data: data.data,
       xField: 'count',
-      yField: 'device',
+      yField: 'device_name',
       seriesField: 'count',
-      legend: { position: 'top-left' },
+      legend: { position: 'bottom-left' },
     };
     return (
       <div>
-        <Divider orientation="left">Overview</Divider>
+        <Divider orientation="left">Top</Divider>
         <div>
-          <div style={{ margin: '4% 10% 4% 10%' }}>
-            <Row justify="space-around" gutter={24}>
-              <Col span={4}>
-                <Statistic title="Predicted income" value={`${152.94}$`} />
-              </Col>
-              <Col span={4}>
-                <Statistic title="Number of Users" value={453} />
-              </Col>
-              <Col span={4}>
-                <Statistic title="User AVG income" value={45123} />
-              </Col>
-              <Col span={4}>
-                <Statistic title="From" value="2021-02-19" />
-              </Col>
-              <Col span={4}>
-                <Statistic title="To" value="2021-04-31" />
-              </Col>
-            </Row>
-          </div>
+          <IntegerStep getData={fetchDevice} />
           <Bar {...BarConfig} />
-          <IntegerStep />
         </div>
       </div>
     );

@@ -48,7 +48,7 @@ const MySider = () => {
             <Link to="/geo">Geo</Link>
           </Menu.Item>
           <Menu.Item key="6">
-            <Link to="/firstPlay">FirstPlay</Link>
+            <Link to="/Hour">Hour</Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu

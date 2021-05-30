@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import { Route } from 'react-router-dom';
 import MySider from './component/MySider';
 import Main from './screen/Main';
-import { Device, FirstPlay, Geo, Os, Weekday } from './screen/analysis';
+import { Device, Hour, Geo, Os, Weekday } from './screen/analysis';
 
 const { Header, Footer } = Layout;
 const App = () => (
@@ -13,7 +13,7 @@ const App = () => (
       <Header style={{ padding: 0, height: '75px' }} />
       <Route path={['/', '/main']} exact component={Main} />
       <Route path="/device" component={Device} />
-      <Route path="/firstPlay" component={FirstPlay} />
+      <Route path="/Hour" component={Hour} />
       <Route path="/geo" component={Geo} />
       <Route path="/os" component={Os} />
       <Route path="/weekday" component={Weekday} />

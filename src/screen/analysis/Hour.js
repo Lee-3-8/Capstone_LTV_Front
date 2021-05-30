@@ -3,9 +3,8 @@ import { Statistic, Row, Col, Divider } from 'antd';
 import { Line } from '@ant-design/charts';
 import ScreenBase from '../../component/ScreenBase';
 import IntegerStep from '../../component/MySlider';
-import FristPlayData from '../../api/FirstPlay';
 
-const FirstPlay = () => {
+const Hour = () => {
   const Gridmain = () => {
     const lineConfig = {
       data: FristPlayData.line,
@@ -46,7 +45,7 @@ const FirstPlay = () => {
       </div>
     );
   };
-  return <ScreenBase title="Analysis" sub="FirstPlay" contents={Gridmain()} />;
+  return <ScreenBase title="Analysis" sub="Hour" contents={Gridmain()} />;
 };
 
-export default FirstPlay;
+export default Hour;

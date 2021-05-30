@@ -5,6 +5,7 @@ import axios from 'axios';
 import ScreenBase from '../../component/ScreenBase';
 import IntegerStep from '../../component/MySlider';
 
+
 const Geo = () => {
   const [data, getData] = useState({
     data: [],

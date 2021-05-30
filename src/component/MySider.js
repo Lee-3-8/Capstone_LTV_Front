@@ -63,10 +63,6 @@ const MySider = () => {
           <Menu.Item key="7">Settings</Menu.Item>
           <Menu.Item key="8">Dev-Info</Menu.Item>
         </SubMenu>
-        <Menu.Item key="9">
-          <FileOutlined />
-          <span>File</span>
-        </Menu.Item>
       </Menu>
     </Sider>
   );

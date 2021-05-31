@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import { Layout, Menu } from 'antd';
-import {
-  StarOutlined,
-  StarFilled,
-  StarTwoTone,
-  FileOutlined,
-} from '@ant-design/icons';
+import { Image, Layout, Menu } from 'antd';
+import { StarOutlined, StarFilled, StarTwoTone } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 const { Sider } = Layout;
@@ -20,7 +15,7 @@ const MySider = () => {
       onCollapse={onCollapse}
       // theme = {'dark'}
     >
-      <div className="App-logo" />
+      <Image width={200} src="../logo.png" preview={false} />
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
         <Menu.Item key="1">
           <StarOutlined />

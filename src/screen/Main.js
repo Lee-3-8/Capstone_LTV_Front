@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Divider } from 'antd';
-import { Column, Pie } from '@ant-design/charts';
+import { Bar, Area, Pie } from '@ant-design/charts';
 import axios from 'axios';
 import ScreenBase from '../component/ScreenBase';
 import IntegerStep from '../component/MySlider';
@@ -22,7 +22,7 @@ const Main = () => {
   const convertData = data => {
     const result = Object.keys(data).map(key => ({
       week: key,
-      value: data[key].toFixed(2) * 1,
+      '$(USD)': data[key].toFixed(2) * 1,
     }));
     console.log(result);
     return result;
@@ -48,17 +48,29 @@ const Main = () => {
   useEffect(() => {
     fetchMain(100);
     return () => {};
-  }, []);
+  }, data);
   const Gridmain = () => {
-    const ColumnConfig = v => ({
+    const AreaConfig = v => ({
+      data: v,
+      height: 400,
+      xField: 'week',
+      yField: '$(USD)',
+      // color: '#fa43a7',
+      meta: {
+        '$(USD)': { max: 150, min: 120 },
+      },
+    });
+    const BarConfig = v => ({
       data: v,
       height: 400,
       xField: 'week',
       yField: 'value',
-      xAxis: { label: { autoRotate: false } },
-      slider: {
-        start: 0,
-        end: 100,
+      // color: '#fa43a7',
+      animation: {
+        appear: {
+          animation: 'path-in',
+          duration: 5000,
+        },
       },
     });
     const pieConfig = (v, title) => ({
@@ -70,7 +82,7 @@ const Main = () => {
       innerRadius: 0.64,
       meta: {
         value: {
-          // eslint-disable-next-line consistent-return
+          // eslint-disable-next-Area consistent-return
           formatter: v => {
             if (v[0] !== 'D') return ''.concat(v, '%');
           },
@@ -141,7 +153,15 @@ const Main = () => {
           </div>
           <Divider orientation="left">Top</Divider>
           <IntegerStep getData={fetchMain} />
-          <Column {...ColumnConfig(data.data)} />
+          <Row justify="space-around" align="middle" gutter={24}>
+            <Col span={18}>
+              <Area {...AreaConfig(data.data)} />
+            </Col>
+            <Col span={6}>
+              <Divider orientation="left">Percent</Divider>
+              <Bar {...BarConfig(data.data)} />
+            </Col>
+          </Row>
           <Divider style={{ margin: '4% 0 4% 0' }} orientation="left">
             Options
           </Divider>

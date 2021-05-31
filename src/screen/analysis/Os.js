@@ -40,6 +40,7 @@ const Os = () => {
       xField: 'device_os',
       yField: 'count',
       xAxis: { label: { autoRotate: false } },
+      seriesField: 'device_os',
       slider: {
         start: 0,
         end: 100,

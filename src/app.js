@@ -10,7 +10,9 @@ const App = () => (
   <Layout style={{ minHeight: '100vh' }}>
     <MySider />
     <Layout>
-      <Header style={{ padding: 0, height: '75px' }} />
+      <Header
+        style={{ padding: 0, height: '46px', backgroundColor: 'white' }}
+      />
       <Route path={['/', '/main']} exact component={Main} />
       <Route path="/device" component={Device} />
       <Route path="/Hour" component={Hour} />

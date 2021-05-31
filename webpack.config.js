@@ -41,6 +41,31 @@ module.exports = {
         },
       },
       {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+          },
+          {
+            loader: 'less-loader', // compiles Less to CSS
+            options: {
+              lessOptions: {
+                // If you are using less-loader@5 please spread the lessOptions to options directly
+                modifyVars: {
+                  'primary-color': '#fa43a7',
+                  'link-color': '#fa43a7',
+                  'border-radius-base': '5px',
+                },
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader', // 바벨 로더를 추가한다
@@ -472,11 +497,6 @@ module.exports = {
       });
       app.get('/ltv/api/device-name/analysis/', (req, res) => {
         res.json([
-          {
-            count: 518,
-            percentile: 15.31,
-            device_name: 'Uncertain',
-          },
           {
             count: 116,
             percentile: 3.43,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Divider } from 'antd';
+import { Row, Col, Divider, Card } from 'antd';
 import { Bar, Area, Pie } from '@ant-design/charts';
 import axios from 'axios';
 import ScreenBase from '../component/ScreenBase';
@@ -7,6 +7,7 @@ import IntegerStep from '../component/MySlider';
 import mainData from '../api/main';
 import Mystatistic from '../component/Mystatistic';
 import MyDate from '../component/MyDate';
+import Mybullets from '../component/Mybullets';
 
 const Main = () => {
   const [start, setStart] = useState('2021-03-01');
@@ -48,7 +49,7 @@ const Main = () => {
   useEffect(() => {
     fetchMain(100);
     return () => {};
-  }, data);
+  }, []);
   const Gridmain = () => {
     const AreaConfig = v => ({
       data: v,
@@ -58,19 +59,6 @@ const Main = () => {
       // color: '#fa43a7',
       meta: {
         '$(USD)': { max: 150, min: 120 },
-      },
-    });
-    const BarConfig = v => ({
-      data: v,
-      height: 400,
-      xField: 'week',
-      yField: 'value',
-      // color: '#fa43a7',
-      animation: {
-        appear: {
-          animation: 'path-in',
-          duration: 5000,
-        },
       },
     });
     const pieConfig = (v, title) => ({
@@ -112,17 +100,15 @@ const Main = () => {
             if (v === undefined) {
               return title;
             }
-
-            return `${v.type}\n${`${v.value}%`}`;
+            return `${v.type}\n${`${(100 * v.value).toFixed()}%`}`;
           },
         },
       },
     });
     return (
-      <div>
-        <Divider orientation="left">Overview</Divider>
-        <div>
-          <div style={{ margin: '4% 10% 4% 10%' }}>
+      <Row gutter={[24, 24]}>
+        <Col span={24}>
+          <Card title="Overview">
             <Row justify="space-around" align="middle" gutter={24}>
               <Col>
                 <Mystatistic
@@ -150,22 +136,26 @@ const Main = () => {
                 />
               </Col>
             </Row>
-          </div>
-          <Divider orientation="left">Top</Divider>
-          <IntegerStep getData={fetchMain} />
-          <Row justify="space-around" align="middle" gutter={24}>
-            <Col span={18}>
-              <Area {...AreaConfig(data.data)} />
-            </Col>
-            <Col span={6}>
-              <Divider orientation="left">Percent</Divider>
-              <Bar {...BarConfig(data.data)} />
-            </Col>
-          </Row>
-          <Divider style={{ margin: '4% 0 4% 0' }} orientation="left">
-            Options
-          </Divider>
-          <div>
+            <Divider orientation="left">Top</Divider>
+            <IntegerStep getData={fetchMain} />
+            <Row justify="center" align="bottom" gutter={24}>
+              <Col span={18}>
+                <Area {...AreaConfig(data.data)} />
+              </Col>
+              <Col span={4}>
+                <Divider orientation="left">Percent</Divider>
+                <Mybullets title="week1" value={0.5} />
+                <Mybullets title="week2" value={0.4} />
+                <Mybullets title="week3" value={0.3} />
+                <Mybullets title="week4" value={0.2} />
+                <Mybullets title="week5" value={0.1} />
+                <Mybullets title="week5" value={0.1} />
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+        <Col span={24}>
+          <Card title="Options">
             <Row gutter={24}>
               <Col span={12}>
                 <Pie {...pieConfig(mainData.pie1, 'DAY')} />
@@ -174,9 +164,9 @@ const Main = () => {
                 <Pie {...pieConfig(mainData.pie2, 'AD')} />
               </Col>
             </Row>
-          </div>
-        </div>
-      </div>
+          </Card>
+        </Col>
+      </Row>
     );
   };
   return <ScreenBase title="Main" contents={Gridmain()} />;

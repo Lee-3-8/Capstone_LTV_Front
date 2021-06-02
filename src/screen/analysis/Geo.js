@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Divider } from 'antd';
+import { Card } from 'antd';
 import { Bar } from '@ant-design/charts';
 import axios from 'axios';
 import ScreenBase from '../../component/ScreenBase';
 import IntegerStep from '../../component/MySlider';
-
 
 const Geo = () => {
   const [data, getData] = useState({
@@ -20,7 +19,6 @@ const Geo = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log(res.data);
     getData({
       data: res.data,
       loading: false,
@@ -41,13 +39,12 @@ const Geo = () => {
       legend: { position: 'bottom-left' },
     };
     return (
-      <div>
-        <Divider orientation="left">Top</Divider>
+      <Card title="Top">
         <div>
           <IntegerStep getData={fetchGeo} />
           <Bar {...BarConfig} />
         </div>
-      </div>
+      </Card>
     );
   };
   return <ScreenBase title="Analysis" sub="Geo" contents={Gridmain()} />;

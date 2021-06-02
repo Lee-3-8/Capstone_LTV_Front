@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import { Route } from 'react-router-dom';
 import MySider from './component/MySider';
+import Myheader from './component/Myheader';
 import Main from './screen/Main';
 import { Device, Hour, Geo, Os, Weekday } from './screen/analysis';
 
@@ -10,9 +11,9 @@ const App = () => (
   <Layout style={{ minHeight: '100vh' }}>
     <MySider />
     <Layout>
-      <Header
-        style={{ padding: 0, height: '46px', backgroundColor: 'white' }}
-      />
+      <Header style={{ padding: 0, height: '46px', backgroundColor: 'white' }}>
+        <Myheader />
+      </Header>
       <Route path={['/', '/main']} exact component={Main} />
       <Route path="/device" component={Device} />
       <Route path="/Hour" component={Hour} />

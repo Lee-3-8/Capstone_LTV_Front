@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout, Breadcrumb, Card } from 'antd';
 
 const { Content } = Layout;
 
@@ -9,9 +9,7 @@ const ScreenBase = ({ title, sub = false, contents = () => '' }) => (
       <Breadcrumb.Item>{title}</Breadcrumb.Item>
       {sub && <Breadcrumb.Item>{sub}</Breadcrumb.Item>}
     </Breadcrumb>
-    <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-      {contents}
-    </div>
+    {contents}
   </Content>
 );
 

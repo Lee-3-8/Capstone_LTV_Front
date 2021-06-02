@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Divider } from 'antd';
+import { Card } from 'antd';
 import { Column } from '@ant-design/charts';
 import ScreenBase from '../../component/ScreenBase';
 import IntegerStep from '../../component/MySlider';
-import OsData from '../../api/Os';
 
 const Os = () => {
   const [data, getData] = useState({
@@ -47,13 +46,12 @@ const Os = () => {
       },
     });
     return (
-      <div>
-        <Divider orientation="left">Top</Divider>
+      <Card title="Top">
         <div>
           <IntegerStep getData={fetchOs} />
           <Column {...ColumnConfig(data)} />
         </div>
-      </div>
+      </Card>
     );
   };
   return <ScreenBase title="Analysis" sub="Os" contents={Gridmain()} />;

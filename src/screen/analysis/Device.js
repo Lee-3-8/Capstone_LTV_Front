@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Divider } from 'antd';
+import { Card } from 'antd';
 import { Bar } from '@ant-design/charts';
 import axios from 'axios';
 import ScreenBase from '../../component/ScreenBase';
@@ -40,13 +40,12 @@ const Device = () => {
       legend: { position: 'bottom-left' },
     };
     return (
-      <div>
-        <Divider orientation="left">Top</Divider>
+      <Card title="Top">
         <div>
           <IntegerStep getData={fetchDevice} />
           <Bar {...BarConfig} />
         </div>
-      </div>
+      </Card>
     );
   };
   return <ScreenBase title="Analysis" sub="Device" contents={Gridmain()} />;

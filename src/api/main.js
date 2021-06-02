@@ -17,37 +17,33 @@ const mainData = {
   pie1: [
     {
       type: 'Day0',
-      value: 27,
+      value: 0.72,
     },
     {
       type: 'Day1',
-      value: 25,
+      value: 0.16,
     },
     {
       type: 'Day2',
-      value: 18,
+      value: 0.05,
     },
     {
-      type: 'Day3~6',
-      value: 15,
-    },
-    {
-      type: 'Day7',
-      value: 15,
+      type: 'Day3~7',
+      value: 0.07,
     },
   ],
   pie2: [
     {
       type: 'is',
-      value: 27,
+      value: 0.83,
     },
     {
       type: 'ba',
-      value: 35,
+      value: 0.094,
     },
     {
       type: 'rv',
-      value: 38,
+      value: 0.076,
     },
   ],
 };

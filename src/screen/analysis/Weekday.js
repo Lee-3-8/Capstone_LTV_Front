@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Divider } from 'antd';
+import { Card } from 'antd';
 import { Pie } from '@ant-design/charts';
 import axios from 'axios';
 import ScreenBase from '../../component/ScreenBase';
@@ -79,13 +79,12 @@ const Weekday = () => {
       },
     });
     return (
-      <div>
-        <Divider orientation="left">Top</Divider>
+      <Card title="Top">
         <div>
           <IntegerStep />
           <Pie {...pieConfig(data.data, 'Week')} />
         </div>
-      </div>
+      </Card>
     );
   };
   return <ScreenBase title="Analysis" sub="Weekday" contents={Gridmain()} />;

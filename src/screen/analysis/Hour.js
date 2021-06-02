@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Divider } from 'antd';
+import { Card } from 'antd';
 import { Line } from '@ant-design/charts';
 import axios from 'axios';
 import ScreenBase from '../../component/ScreenBase';
@@ -19,7 +19,6 @@ const Hour = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log(res.data);
     getData({
       data: res.data,
       loading: false,
@@ -74,13 +73,12 @@ const Hour = () => {
       interactions: [{ type: 'marker-active' }],
     };
     return (
-      <div>
-        <Divider orientation="left">Top</Divider>
+      <Card title="Top">
         <div>
           <IntegerStep getData={fetchHour} />
           <Line {...lineConfig} />
         </div>
-      </div>
+      </Card>
     );
   };
   return <ScreenBase title="Analysis" sub="Hour" contents={Gridmain()} />;

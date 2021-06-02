@@ -1,8 +1,15 @@
-import { Slider, InputNumber, Row, Col, Button } from 'antd';
+import { Slider, InputNumber, Row, Col, Button, message } from 'antd';
 import React, { useState } from 'react';
 
 const IntegerStep = ({ getData }) => {
+  const key = 'updatable';
   const [inputValue, onChange] = useState(100);
+  const viewMessage = () => {
+    message.loading({ content: 'Loading...', key });
+    setTimeout(() => {
+      message.success({ content: 'Loaded!', key, duration: 2 });
+    }, 1000);
+  };
   const marks = {
     0: {
       style: {
@@ -53,7 +60,13 @@ const IntegerStep = ({ getData }) => {
           />
         </Col>
         <Col>
-          <Button type="primary" onClick={() => getData(inputValue)}>
+          <Button
+            type="primary"
+            onClick={() => {
+              getData(inputValue);
+              viewMessage();
+            }}
+          >
             View
           </Button>
         </Col>

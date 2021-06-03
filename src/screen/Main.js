@@ -15,6 +15,7 @@ const Main = () => {
   const [total, setTotal] = useState(0);
   const [user, setUser] = useState(0);
   const [avg, setAvg] = useState(0);
+  const [ratio, setRatio] = useState([]);
   const [data, getData] = useState({
     data: [],
     loading: true,
@@ -25,7 +26,6 @@ const Main = () => {
       week: key,
       '$(USD)': data[key].toFixed(2) * 1,
     }));
-    console.log(result);
     return result;
   };
 
@@ -45,6 +45,12 @@ const Main = () => {
       data: convertData(res.data.data),
       loading: false,
     });
+    setRatio(
+      Object.keys(res.data.ads_ratio).map(key => ({
+        type: key,
+        value: (res.data.ads_ratio[key] / res.data.total).toFixed(2) * 1,
+      })),
+    );
   };
   useEffect(() => {
     fetchMain(100);
@@ -145,30 +151,14 @@ const Main = () => {
               <Col span={4}>
                 <Divider orientation="left">Percent</Divider>
                 <Row>
-                  <Col span={24}>
-                    <Mybullets title="week1" value={0.5} />
-                  </Col>
-                  <Col span={24}>
-                    <Mybullets title="week1" value={0.4} />
-                  </Col>
-                  <Col span={24}>
-                    <Mybullets title="week1" value={0.3} />
-                  </Col>
-                  <Col span={24}>
-                    <Mybullets title="week1" value={0.1} />
-                  </Col>
-                  <Col span={24}>
-                    <Mybullets title="week1" value={0.2} />
-                  </Col>
-                  <Col span={24}>
-                    <Mybullets title="week1" value={0.5} />
-                  </Col>
-                  <Col span={24}>
-                    <Mybullets title="week1" value={0.5} />
-                  </Col>
-                  <Col span={24}>
-                    <Mybullets title="week1" value={0.5} />
-                  </Col>
+                  {data.data.slice(0, 9).map(value => (
+                    <Col span={24}>
+                      <Mybullets
+                        title={value.week}
+                        value={value['$(USD)'] / total}
+                      />
+                    </Col>
+                  ))}
                 </Row>
               </Col>
             </Row>
@@ -181,7 +171,7 @@ const Main = () => {
                 <Pie {...pieConfig(mainData.pie1, 'DAY')} />
               </Col>
               <Col span={12}>
-                <Pie {...pieConfig(mainData.pie2, 'AD')} />
+                <Pie {...pieConfig(ratio, 'AD')} />
               </Col>
             </Row>
           </Card>

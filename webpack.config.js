@@ -109,10 +109,10 @@ module.exports = {
       app.get('/ltv/api/prediction', (req, res) => {
         res.json({
           data: {
+            week4: 149.12005174160004,
             week1: 128.79898205399513,
             week2: 133.08281889557838,
             week3: 141.10717052221298,
-            week4: 149.12005174160004,
             week5: 138.644366979599,
             week6: 124.10975950956345,
             week7: 133.6972360908985,
@@ -121,6 +121,11 @@ module.exports = {
           total: 1078.9560574889183,
           user: 5280,
           avg: 0.20434773816077997,
+          ads_ratio: {
+            is: 614.8174438476562,
+            rv: 53.818878173828125,
+            ba: 74.02789306640625,
+          },
         });
       });
       app.get('/ltv/api/device-os/analysis', (req, res) => {

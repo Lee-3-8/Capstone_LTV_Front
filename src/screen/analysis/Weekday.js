@@ -82,7 +82,7 @@ const Weekday = () => {
       <Card title="Top">
         <div>
           <IntegerStep />
-          <Pie {...pieConfig(data.data, 'Week')} />
+          <Pie {...pieConfig(data.data, 'DAY')} />
         </div>
       </Card>
     );

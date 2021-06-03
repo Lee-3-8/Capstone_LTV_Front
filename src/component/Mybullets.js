@@ -1,5 +1,4 @@
 import React from 'react';
-import { Statistic } from 'antd';
 import { Progress } from '@ant-design/charts';
 
 const Mybullets = ({ title, value }) => {

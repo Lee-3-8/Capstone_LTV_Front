@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Image, Layout, Menu } from 'antd';
-import { HomeOutlined, StarFilled, SettingFilled } from '@ant-design/icons';
+import {
+  HomeOutlined,
+  SettingFilled,
+  BarChartOutlined,
+} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 const { Sider } = Layout;
@@ -25,7 +29,7 @@ const MySider = () => {
           key="sub1"
           title={
             <span>
-              <StarFilled />
+              <BarChartOutlined />
               <span>Analysis</span>
             </span>
           }

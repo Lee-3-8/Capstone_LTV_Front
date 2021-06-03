@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Breadcrumb, Card } from 'antd';
+import { Layout, Breadcrumb } from 'antd';
 
 const { Content } = Layout;
 

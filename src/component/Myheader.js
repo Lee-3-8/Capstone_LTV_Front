@@ -15,16 +15,6 @@ const Myheader = () => {
       align="middle"
       gutter={[24, 40]}
     >
-      {/* <Col span={[2, 2]}>
-        <Tooltip title="search">
-          <Button type="primary" shape="circle" icon={<SearchOutlined />} />
-        </Tooltip>
-      </Col>
-      <Col span={[2, 2]}>
-        <Tooltip title="search">
-          <Button type="primary" shape="circle" icon={<SearchOutlined />} />
-        </Tooltip>
-      </Col> */}
       <Tooltip title="search">
         <Button
           type="primary"

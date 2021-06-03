@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import MySider from './component/MySider';
 import Myheader from './component/Myheader';
 import Main from './screen/Main';
-import { Device, Hour, Geo, Os, Weekday } from './screen/analysis';
+import { Device, Hour, Geo, Os, Weekday, Setting } from './screen/analysis';
 
 const { Header, Footer } = Layout;
 const App = () => (
@@ -16,10 +16,11 @@ const App = () => (
       </Header>
       <Route path={['/', '/main']} exact component={Main} />
       <Route path="/device" component={Device} />
-      <Route path="/Hour" component={Hour} />
+      <Route path="/hour" component={Hour} />
       <Route path="/geo" component={Geo} />
       <Route path="/os" component={Os} />
       <Route path="/weekday" component={Weekday} />
+      <Route path="/setting" component={Setting} />
       <Footer style={{ textAlign: 'center' }}>
         Sejong Univ CE Capstone Project LTV Predict WEB
       </Footer>

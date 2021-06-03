@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Divider, Card } from 'antd';
-import { Bar, Area, Pie } from '@ant-design/charts';
+import { Area, Pie } from '@ant-design/charts';
 import axios from 'axios';
 import ScreenBase from '../component/ScreenBase';
 import IntegerStep from '../component/MySlider';
@@ -138,18 +138,38 @@ const Main = () => {
             </Row>
             <Divider orientation="left">Top</Divider>
             <IntegerStep getData={fetchMain} />
-            <Row justify="center" align="bottom" gutter={24}>
+            <Row justify="center" align="bottom" gutter={[16, 16]}>
               <Col span={18}>
                 <Area {...AreaConfig(data.data)} />
               </Col>
               <Col span={4}>
                 <Divider orientation="left">Percent</Divider>
-                <Mybullets title="week1" value={0.5} />
-                <Mybullets title="week2" value={0.4} />
-                <Mybullets title="week3" value={0.3} />
-                <Mybullets title="week4" value={0.2} />
-                <Mybullets title="week5" value={0.1} />
-                <Mybullets title="week5" value={0.1} />
+                <Row>
+                  <Col span={24}>
+                    <Mybullets title="week1" value={0.5} />
+                  </Col>
+                  <Col span={24}>
+                    <Mybullets title="week1" value={0.4} />
+                  </Col>
+                  <Col span={24}>
+                    <Mybullets title="week1" value={0.3} />
+                  </Col>
+                  <Col span={24}>
+                    <Mybullets title="week1" value={0.1} />
+                  </Col>
+                  <Col span={24}>
+                    <Mybullets title="week1" value={0.2} />
+                  </Col>
+                  <Col span={24}>
+                    <Mybullets title="week1" value={0.5} />
+                  </Col>
+                  <Col span={24}>
+                    <Mybullets title="week1" value={0.5} />
+                  </Col>
+                  <Col span={24}>
+                    <Mybullets title="week1" value={0.5} />
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </Card>

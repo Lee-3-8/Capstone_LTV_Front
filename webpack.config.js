@@ -34,7 +34,7 @@ module.exports = {
         use: {
           loader: 'url-loader', // url 로더를 설정한다
           options: {
-            publicPath: './', // file-loader와 동일
+            publicPath: './dist/', // file-loader와 동일
             name: '[name].[ext]?[hash]', // file-loader와 동일
             limit: 5000, // 5kb 미만 파일만 data url로 처리
           },
@@ -121,6 +121,8 @@ module.exports = {
           total: 1078.9560574889183,
           user: 5280,
           avg: 0.20434773816077997,
+          min: 120.2345,
+          max: 150.1235,
           ads_ratio: {
             is: 614.8174438476562,
             rv: 53.818878173828125,

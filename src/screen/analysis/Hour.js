@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card } from 'antd';
 import { Line } from '@ant-design/charts';
 import axios from 'axios';
-import ScreenBase from '../../component/ScreenBase';
-import IntegerStep from '../../component/MySlider';
+import { ScreenBase, IntegerStep } from '../../component';
 
 const Hour = () => {
   const [data, getData] = useState({

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card } from 'antd';
-import ScreenBase from '../../component/ScreenBase';
-import IntegerStep from '../../component/MySlider';
+import { ScreenBase } from '../../component';
 
 const Setting = () => {
   const Gridmain = () => {

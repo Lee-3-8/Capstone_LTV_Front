@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card } from 'antd';
 import { Pie } from '@ant-design/charts';
 import axios from 'axios';
-import ScreenBase from '../../component/ScreenBase';
-import IntegerStep from '../../component/MySlider';
+import { ScreenBase, IntegerStep } from '../../component';
 
 const Weekday = () => {
   const [data, getData] = useState({

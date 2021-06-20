@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card } from 'antd';
 import { Column } from '@ant-design/charts';
-import ScreenBase from '../../component/ScreenBase';
-import IntegerStep from '../../component/MySlider';
+import { ScreenBase, IntegerStep } from '../../component';
 
 const Os = () => {
   const [data, getData] = useState({

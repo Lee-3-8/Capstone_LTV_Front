@@ -19,7 +19,11 @@ const MySider = () => {
       onCollapse={onCollapse}
       // theme = {'dark'}
     >
-      <Image width={200} src="../logo.png" preview={false} />
+      <Image
+        width={200}
+        src="https://user-images.githubusercontent.com/57481424/120642582-0b6e5380-c4b0-11eb-84e3-d67ac1ae36a3.png"
+        preview={false}
+      />
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
         <Menu.Item key="1">
           <HomeOutlined />

@@ -10,9 +10,11 @@ import MyDate from '../component/MyDate';
 import Mybullets from '../component/Mybullets';
 
 const Main = () => {
-  const [start, setStart] = useState('2021-03-01');
-  const [end, setEnd] = useState('2021-05-18');
+  const [start, setStart] = useState('2021-02-18');
+  const [end, setEnd] = useState('2021-05-11');
   const [total, setTotal] = useState(0);
+  const [min, setMin] = useState(0);
+  const [max, setMax] = useState(0);
   const [user, setUser] = useState(0);
   const [avg, setAvg] = useState(0);
   const [ratio, setRatio] = useState([]);
@@ -41,10 +43,13 @@ const Main = () => {
     setTotal(res.data.total.toFixed(3));
     setUser(res.data.user);
     setAvg(res.data.avg.toFixed(3));
+    setMin(res.data.min.toFixed() * 1);
+    setMax(res.data.max.toFixed() * 1);
     getData({
       data: convertData(res.data.data),
       loading: false,
     });
+    console.log(data.data.sort());
     setRatio(
       Object.keys(res.data.ads_ratio).map(key => ({
         type: key,
@@ -58,13 +63,13 @@ const Main = () => {
   }, []);
   const Gridmain = () => {
     const AreaConfig = v => ({
-      data: v,
+      data: v.sort((a, b) => Number(a.week.slice(4)) - Number(b.week.slice(4))),
       height: 400,
       xField: 'week',
       yField: '$(USD)',
       // color: '#fa43a7',
       meta: {
-        '$(USD)': { max: 150, min: 120 },
+        '$(USD)': { max, min },
       },
     });
     const pieConfig = (v, title) => ({
@@ -146,7 +151,7 @@ const Main = () => {
             <IntegerStep getData={fetchMain} />
             <Row justify="center" align="bottom" gutter={[16, 16]}>
               <Col span={18}>
-                <Area {...AreaConfig(data.data)} />
+                <Area {...AreaConfig(data.data.slice())} />
               </Col>
               <Col span={4}>
                 <Divider orientation="left">Percent</Divider>
